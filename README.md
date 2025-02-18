@@ -1,1 +1,1 @@
-# Code
+This repository is a collection of some of the many coding related work that I have done that I feel proud of what I was able to accomplish. It shows code that I have done for my aerospace club team, code I have written for class and code I have written because I felt like there is a problem I want to solve or just code I have written to see how something works and if I am able to recreate it. It shows my hard work and dedication towards the work I do and the work that I love and believe in.
