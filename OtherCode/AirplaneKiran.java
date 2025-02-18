@@ -240,67 +240,8 @@ class Airplane implements list{
 /* Do not delete the given driver , The class Driver must be in your code when you submit it
 Once you complete all the classes uncommnet the given driver to test your code.*/
 
-class Driver {
-   public static void main(String[]args) {
-      Scanner in = new Scanner(System.in);
 
-      Scanner kb = new Scanner(System.in);
-      Airplane plane = new Airplane(817345, "Toronto");
-      Passenger p1 = new Passenger("Bobbys", "Smith", "123456789","123, Stollmore" ,1, "First class", "916-222-3333", "Veg");
-      Passenger p2 = new Passenger("Johnny", "Apples", "987654321","352, Block Drive" ,8, "Business class", "818-000-1234", "Vegan");
-      Passenger p3 = new Passenger("Tommy", "Jerrys", "567123489","793, Corbrone Ave" ,32, "Economy class","202-222-3333", "Non-Veg No nuts");
-      Passenger p4 = new Passenger("Candy", "Cruze", "982134567","629, Flianders Ct" ,15, "Premium Economy class","707-444-5555", "Halal");
-
-      //this passenger will be added after take off
-      Passenger p5 = new Passenger("Kalotiii", "Aaronn", "762134589","832, Fast Lane" ,5, "Economy plus","817-222-6666","Vegan");
-
-      plane.add(p1);
-      plane.add(p2);
-      plane.add(p3);
-      plane.add(p4);
-      System.out.println("The plane is about to take off");
-      plane.takeOff();
-      System.out.println("adding a passenger after take off");
-      plane.add(p5);
-      String repeat = "";
-      while(plane.getCount() > 0)
-      {
-
-         System.out.println("Here is the list of the passengers in this plane");
-         System.out.println("There are " + plane.getCount() + " Passengers on this plane");
-         System.out.println(plane + "\n");
-
-         System.out.println("Testing the printLast method to display the last names");
-         plane.printLast();
-         System.out.println();
-
-         System.out.println("Testing the static method getCount");
-         System.out.println("This train has " + plane.getCount() + " Passengers\n");
-
-         System.out.print("Enter the last name of the passenger to search for: ");
-         String lastName = in.nextLine();
-         System.out.println(plane.search(lastName));
-         System.out.println();
-
-         System.out.println("Testing the delete method");
-         System.out.print("Enter the last name of the passenger to be deleted: ");
-         String last = in.nextLine();
-         plane.delete(last);
-         System.out.println("Passenger " + last + " has been removed from the list\n");
-
-         System.out.println("Here is the updated list");
-         System.out.println(plane);
-         System.out.println("*********************");
-         System.out.print("Press any key to continue : ");
-         repeat = kb.nextLine();
-      }
-      System.out.println("No passenger left on this airplane");
-
-   }
-}
-/*Complete the following driver to include the required code.*/
-/*20 points is allocated for this driver*/
-class yourDriver
+class Driver
 {
     public static void main(String[] args) {
         // Instantiate an airplane with a destination
