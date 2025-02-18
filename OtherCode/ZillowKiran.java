@@ -1,40 +1,100 @@
-/*
-Name:Ronav Som Kiran
-Description: This program implements a real estate listing application where houses are added, searched, and removed from a linked list. It allows searching based on rooms, baths, and zip codes, and displays the least and most expensive houses. Additional features include new instance variables and methods.
-Date:10/25/24
-Self grade: 96/100
-Testimony: I have written the code by myself and did not use unauthorized resources. Ronav Som Kiran
-
-Extra features added (35 points):
-1. Added two instance variables to the `House` class: `yearBuilt` and `garageSize`.
-2. Modified the `House` constructor and `toString` method to include the new instance variables.
-3. Added two extra methods in the `List` interface: `mostExpensiveHouse()` and `leastExpensiveHouse()`.
-4. Implemented the new methods in the `Zillow` class.
-5. Created a `YourDriver` class following the rules (no switch-case, used if/else).
-Have you modified the rest of the code in the House class?
-
-Have you added the new methods to the List interface Yes
-
-Have you implemented the new methods in the Zillow class Yes
-
-Have you modifed the given Driver to work with your code? Yes
-
-Have you called all the methods from the Zillow class in the Driver you created? Yes
-
-Have you used conditional statemnets instead of case in YourDiver Yes
-
-
-I am aware that If the instructor finds that the submitted code is from previos semester, I will get zero points for it.Name: Ronav Som Kiran
-*/
 
 import java.util.Scanner;
-// Do not delete the ZillowLastname
-public class ZillowKiran // must change this name to include your last name
-{
-    // no code here
-}
 
-/*Extra feature: must add two extra instance variables. Constructor, toString method must be modified*/
+public class MyDriver {
+    public static void main(String[] args) {
+        Zillow list = new Zillow();
+        Scanner kb = new Scanner(System.in);
+
+        // Adding custom house objects for testing
+        list.add(3, 2, 500000, 1500, "123 Main St", "94501", "John Doe", true);
+        list.add(4, 3, 750000, 2000, "456 Oak St", "94502", "Jane Doe", false);
+        list.add(2, 2, 350000, 1200, "789 Pine St", "94503", "Alice Smith", true);
+
+        // Calling various methods
+        while (true) {
+            // Display menu options to the user
+            choice();
+            System.out.print("Select an option: ");
+            int option = kb.nextInt();
+
+            if (option == 1) {
+                System.out.print("Enter the zipcode: ");
+                String zip = kb.next();
+                String s = list.search(zip);
+                if (!s.isEmpty()) {
+                    System.out.println(s);
+                } else {
+                    System.out.println("No house found.");
+                }
+            } else if (option == 2) {
+                System.out.print("Enter the number of rooms: ");
+                int rooms = kb.nextInt();
+                String s = list.search(rooms);
+                if (!s.isEmpty()) {
+                    System.out.println(s);
+                } else {
+                    System.out.println("No house found.");
+                }
+            } else if (option == 3) {
+                System.out.print("Enter the number of rooms and baths: ");
+                int rooms = kb.nextInt();
+                int baths = kb.nextInt();
+                String s = list.search(rooms, baths);
+                if (!s.isEmpty()) {
+                    System.out.println(s);
+                } else {
+                    System.out.println("No house found.");
+                }
+            } else if (option == 4) {
+                System.out.print("Enter the address of the house: ");
+                kb.nextLine(); // consume the leftover newline
+                String address = kb.nextLine();
+                list.remove(address);
+                System.out.println("House at " + address + " removed.");
+            } else if (option == 5) {
+                // User adds a house to the list
+                System.out.print("Enter the number of rooms: ");
+                int rooms = kb.nextInt();
+                System.out.print("Enter the number of baths: ");
+                int baths = kb.nextInt();
+                System.out.print("Enter the price: ");
+                double price = kb.nextDouble();
+                System.out.print("Enter the square feet: ");
+                double area = kb.nextDouble();
+                System.out.print("Enter the zipcode: ");
+                String zip = kb.next();
+                kb.nextLine(); // consume the leftover newline
+                System.out.print("Enter the address: ");
+                String address = kb.nextLine();
+                System.out.print("Enter the owner's name: ");
+                String ownerName = kb.nextLine();
+                System.out.print("Has garage (true/false): ");
+                boolean hasGarage = kb.nextBoolean();
+
+                list.add(rooms, baths, price, area, address, zip, ownerName, hasGarage);
+                System.out.println("House added successfully.");
+            } else if (option == 6) {
+                // Print all houses in the list
+                System.out.println(list);
+            } else if (option == 7) {
+                // Display the most expensive house
+                System.out.println("Most expensive house:");
+                System.out.println(list.mostExpensiveHouse());
+            } else if (option == 8) {
+                // Display the least expensive house
+                System.out.println("Least expensive house:");
+                System.out.println(list.leastExpensiveHouse());
+            } else if (option == 9) {
+                // Exit the program
+                System.out.println("Exiting the program...");
+                break;
+            } else {
+                System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+
 class House implements Comparable<Object>{
     // instance variables
     private int rooms;
@@ -278,224 +338,3 @@ class Zillow implements List {
         return leastExpensive;
     }
 }
-
-// Implement your own driver similar to the given one. You must use if/else and not switches.
-class YourDriver {
-    public static void main(String[] args) {
-        Zillow list = new Zillow();
-        Scanner kb = new Scanner(System.in);
-
-        // Adding custom house objects for testing
-        list.add(3, 2, 500000, 1500, "123 Main St", "94501", "John Doe", true);
-        list.add(4, 3, 750000, 2000, "456 Oak St", "94502", "Jane Doe", false);
-        list.add(2, 2, 350000, 1200, "789 Pine St", "94503", "Alice Smith", true);
-
-        // Calling various methods
-        while (true) {
-            // Display menu options to the user
-            choice();
-            System.out.print("Select an option: ");
-            int option = kb.nextInt();
-
-            if (option == 1) {
-                System.out.print("Enter the zipcode: ");
-                String zip = kb.next();
-                String s = list.search(zip);
-                if (!s.isEmpty()) {
-                    System.out.println(s);
-                } else {
-                    System.out.println("No house found.");
-                }
-            } else if (option == 2) {
-                System.out.print("Enter the number of rooms: ");
-                int rooms = kb.nextInt();
-                String s = list.search(rooms);
-                if (!s.isEmpty()) {
-                    System.out.println(s);
-                } else {
-                    System.out.println("No house found.");
-                }
-            } else if (option == 3) {
-                System.out.print("Enter the number of rooms and baths: ");
-                int rooms = kb.nextInt();
-                int baths = kb.nextInt();
-                String s = list.search(rooms, baths);
-                if (!s.isEmpty()) {
-                    System.out.println(s);
-                } else {
-                    System.out.println("No house found.");
-                }
-            } else if (option == 4) {
-                System.out.print("Enter the address of the house: ");
-                kb.nextLine(); // consume the leftover newline
-                String address = kb.nextLine();
-                list.remove(address);
-                System.out.println("House at " + address + " removed.");
-            } else if (option == 5) {
-                // User adds a house to the list
-                System.out.print("Enter the number of rooms: ");
-                int rooms = kb.nextInt();
-                System.out.print("Enter the number of baths: ");
-                int baths = kb.nextInt();
-                System.out.print("Enter the price: ");
-                double price = kb.nextDouble();
-                System.out.print("Enter the square feet: ");
-                double area = kb.nextDouble();
-                System.out.print("Enter the zipcode: ");
-                String zip = kb.next();
-                kb.nextLine(); // consume the leftover newline
-                System.out.print("Enter the address: ");
-                String address = kb.nextLine();
-                System.out.print("Enter the owner's name: ");
-                String ownerName = kb.nextLine();
-                System.out.print("Has garage (true/false): ");
-                boolean hasGarage = kb.nextBoolean();
-
-                list.add(rooms, baths, price, area, address, zip, ownerName, hasGarage);
-                System.out.println("House added successfully.");
-            } else if (option == 6) {
-                // Print all houses in the list
-                System.out.println(list);
-            } else if (option == 7) {
-                // Display the most expensive house
-                System.out.println("Most expensive house:");
-                System.out.println(list.mostExpensiveHouse());
-            } else if (option == 8) {
-                // Display the least expensive house
-                System.out.println("Least expensive house:");
-                System.out.println(list.leastExpensiveHouse());
-            } else if (option == 9) {
-                // Exit the program
-                System.out.println("Exiting the program...");
-                break;
-            } else {
-                System.out.println("Invalid option. Please try again.");
-            }
-        }
-    }
-
-    /* DO NOT DELETE THE Driver CLASS */
-    /* This is the driver that your code will be graded with. */
-
-
-        public static void choice() {
-            System.out.println("\n*********************************************************\n");
-            System.out.println("Enter 1 to list the houses based on the zipcode");
-            System.out.println("Enter 2 to list the houses based on the number of rooms");
-            System.out.println("Enter 3 to list the houses with the number of rooms and baths");
-            System.out.println("Enter 4 to remove a house from the list");
-            System.out.println("Enter 5 to add a house to the list");
-            System.out.println("Enter 6 to list all the houses");
-            System.out.println("Enter 7 to list the most expensive house");
-            System.out.println("Enter 8 to list the least expensive house");
-            System.out.println("Enter 9 to exit the program");
-            System.out.println("***************************************************\n");
-        }
-    }
-/* DO NOT DELETE THE Driver CLASS */
-/* This is the driver that your code will be graded with. */
-class Driver {
-    public static void main(String[] args) {
-        Zillow list = new Zillow();
-
-        // Add sample houses
-        list.add(2, 3, 710000, 1200, "Shannan Bay Drive", "95677", "Mr. Owner1", true);
-        list.add(4, 3, 1700000, 3000, "Miners Cir", "95677", "Mrs. Owner2", true);
-        list.add(2, 2, 650000, 1400, "Albatross Way", "95677", "Mr. Owner3", false);
-        list.add(2, 3, 600000, 1200, "Halidon Drive", "95630", "Mrs. Owner4", true);
-        list.add(2, 3, 750000, 1250, "Taylor St", "95630", "Mr. Owner5", false);
-        list.add(2, 3, 700000, 1100, "Canyon Drive", "95762", "Mr. Owner6", true);
-        list.add(5, 4, 1650000, 2300, "Ridge View Drive", "95762", "Mrs. Owner7", true);
-        list.add(3, 2, 722000, 2300, "Vila Flor", "95630", "Mr. Owner8", true);
-
-        // Scanner input for interaction
-        Scanner kb = new Scanner(System.in);
-
-        while (true) {
-            choice(); // Display options
-            System.out.print("Select an option: ");
-            int option = kb.nextInt();
-
-            if (option == 1) {
-                System.out.print("Enter the zipcode: ");
-                String zip = kb.next();
-                String s = list.search(zip);
-                if (!s.isEmpty()) {
-                    System.out.println(s);
-                } else {
-                    System.out.println("No house found.");
-                }
-            } else if (option == 2) {
-                System.out.print("Enter the number of rooms: ");
-                int rooms = kb.nextInt();
-                String s = list.search(rooms);
-                if (!s.isEmpty()) {
-                    System.out.println(s);
-                } else {
-                    System.out.println("No house found.");
-                }
-            } else if (option == 3) {
-                System.out.print("Enter the number of rooms and baths: ");
-                int rooms = kb.nextInt();
-                int baths = kb.nextInt();
-                String s = list.search(rooms, baths);
-                if (!s.isEmpty()) {
-                    System.out.println(s);
-                } else {
-                    System.out.println("No house found.");
-                }
-            } else if (option == 4) {
-                System.out.print("Enter the address of the house: ");
-                kb.nextLine(); // consume the leftover newline
-                String address = kb.nextLine();
-                list.remove(address);
-                System.out.println("House at " + address + " removed.");
-            } else if (option == 5) {
-                System.out.print("Enter the number of rooms: ");
-                int rooms = kb.nextInt();
-                System.out.print("Enter the number of baths: ");
-                int baths = kb.nextInt();
-                System.out.print("Enter the price: ");
-                double price = kb.nextDouble();
-                System.out.print("Enter the square feet: ");
-                double area = kb.nextDouble();
-                System.out.print("Enter the zipcode: ");
-                String zip = kb.next();
-                kb.nextLine(); // consume the leftover newline
-                System.out.print("Enter the address: ");
-                String address = kb.nextLine();
-                System.out.print("Enter the owner's name: ");
-                String ownerName = kb.nextLine();
-                System.out.print("Has garage (true/false): ");
-                boolean hasGarage = kb.nextBoolean();
-
-                list.add(rooms, baths, price, area, address, zip, ownerName, hasGarage);
-                System.out.println("House added successfully.");
-            } else if (option == 6) {
-                System.out.println(list);
-            } else if (option == 7) {
-                System.out.println("Most expensive house:");
-                System.out.println(list.mostExpensiveHouse());
-            } else if (option == 8) {
-                System.out.println("Least expensive house:");
-                System.out.println(list.leastExpensiveHouse());
-            }
-        }
-    }
-    public static void choice() {
-        System.out.println("\n*********************************************************\n");
-        System.out.println("Enter 1 to list the houses based on the zipcode");
-        System.out.println("Enter 2 to list the houses based on the number of rooms");
-        System.out.println("Enter 3 to list the houses with the number of rooms and baths");
-        System.out.println("Enter 4 to remove a house from the list");
-        System.out.println("Enter 5 to add a house to the list");
-        System.out.println("Enter 6 to list all the houses");
-        System.out.println("Enter 7 to list the most expensive house");
-        System.out.println("Enter 8 to list the least expensive house");
-        System.out.println("***************************************************\n");
-    }
-}
-
-
-
-
