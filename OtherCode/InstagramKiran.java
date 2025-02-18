@@ -1,19 +1,66 @@
 import java.util.*;
+public class MyDriver {
+    public static void main(String[] args) {
+        Instagram myInsta = new Instagram();
+        /*Adding followers to your list*/
+        /*the boolean field indicates whether you want to follow them back*/
+        myInsta.follow(true, "Alice", "Johnson", "aliceJ");
+        myInsta.follow(false, "Bob", "Smith", "bobS");
+        myInsta.follow(true, "Charlie", "Brown", "charlieB");
+        myInsta.follow(true, "Dana", "White", "danaW");
+        myInsta.follow(false, "Elon", "Musk", "elonM");
 
-/*
-Name: Kiran's Instagram App
-Description: This is a simple Instagram app simulation where users can follow, unfollow, and track followers.
-self-grade: I have implemented the requested features and added extra attributes and methods with functionality (30 points). Extra methods include follower count tracking and blocking users.
-Testimony: I have done all the code myself with no help from unauthorized people.
-DO NOT REMOVE ANY COMMENTS.
-If the comments are removed, 10 points will be deducted.
-*/
+        /*Displaying your followers*/
+        System.out.println("Your followers' information\n");
+        System.out.println(myInsta);
 
-public class InstagramKiran
-{
-//no code here
+        /*Unfollowing a user*/
+        System.out.println("Removing Charlie Brown from your followers list");
+        myInsta.delete("Charlie", "Brown");
+
+        /*Displaying the list*/
+        System.out.println("List of followers after removing Charlie Brown:");
+        System.out.println(myInsta);
+
+        /*Adding a new follower*/
+        System.out.println("Adding Jane Doe to your list of followers");
+        myInsta.follow(true, "Jane", "Doe", "janeD");
+
+        /*Displaying the followers*/
+        System.out.println("List of your followers:");
+        System.out.println(myInsta);
+
+        /*Searching for a follower*/
+        System.out.println("Searching for Elon Musk (elonM) in your followers list");
+        if (!myInsta.find("Elon", "Musk")) {
+            System.out.println("Elon Musk is not in your list of followers");
+        }
+
+        System.out.println("\n***************************");
+        System.out.println("You are following " + myInsta.followersNum() + " people");
+        System.out.println("You have " + myInsta.followingsNum() + " followers");
+
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Enter the first name and the last name of the person that you want to follow back: ");
+        String first = kb.next();
+        String last = kb.next();
+        myInsta.followBack(first, last);
+        System.out.println(myInsta);
+
+        System.out.println("Enter the username of the user that you would like to block");
+        String username = kb.next();
+
+        myInsta.blockUser(username);
+
+        System.out.println(myInsta);
+        System.out.println("Enter the username of the user that you would like to unblock");
+        String username1 = kb.next();
+
+        myInsta.unblockUser(username1);
+
+        System.out.println(myInsta);
+    }
 }
-
 // User class representing a user in the Instagram app
 class User implements Comparable<User> {
     private String first;
@@ -210,109 +257,3 @@ class Instagram {
     }
 }
 
-// Custom Driver
-class MyDriver {
-    public static void main(String[] args) {
-        Instagram myInsta = new Instagram();
-        /*Adding followers to your list*/
-        /*the boolean field indicates whether you want to follow them back*/
-        myInsta.follow(true, "Alice", "Johnson", "aliceJ");
-        myInsta.follow(false, "Bob", "Smith", "bobS");
-        myInsta.follow(true, "Charlie", "Brown", "charlieB");
-        myInsta.follow(true, "Dana", "White", "danaW");
-        myInsta.follow(false, "Elon", "Musk", "elonM");
-
-        /*Displaying your followers*/
-        System.out.println("Your followers' information\n");
-        System.out.println(myInsta);
-
-        /*Unfollowing a user*/
-        System.out.println("Removing Charlie Brown from your followers list");
-        myInsta.delete("Charlie", "Brown");
-
-        /*Displaying the list*/
-        System.out.println("List of followers after removing Charlie Brown:");
-        System.out.println(myInsta);
-
-        /*Adding a new follower*/
-        System.out.println("Adding Jane Doe to your list of followers");
-        myInsta.follow(true, "Jane", "Doe", "janeD");
-
-        /*Displaying the followers*/
-        System.out.println("List of your followers:");
-        System.out.println(myInsta);
-
-        /*Searching for a follower*/
-        System.out.println("Searching for Elon Musk (elonM) in your followers list");
-        if (!myInsta.find("Elon", "Musk")) {
-            System.out.println("Elon Musk is not in your list of followers");
-        }
-
-        System.out.println("\n***************************");
-        System.out.println("You are following " + myInsta.followersNum() + " people");
-        System.out.println("You have " + myInsta.followingsNum() + " followers");
-
-        Scanner kb = new Scanner(System.in);
-        System.out.println("Enter the first name and the last name of the person that you want to follow back: ");
-        String first = kb.next();
-        String last = kb.next();
-        myInsta.followBack(first, last);
-        System.out.println(myInsta);
-
-        System.out.println("Enter the username of the user that you would like to block");
-        String username = kb.next();
-
-        myInsta.blockUser(username);
-
-        System.out.println(myInsta);
-        System.out.println("Enter the username of the user that you would like to unblock");
-        String username1 = kb.next();
-
-        myInsta.unblockUser(username1);
-
-        System.out.println(myInsta);
-    }
-}
-
-
-/* Provided Driver */
-class Driver {
-    public static void main(String[] args) {
-        Instagram myInsta = new Instagram();
-        myInsta.follow(true, "Matthew", "Philips", "MatPhil");
-        myInsta.follow(false, "Gary", "Kane", "GKane");
-        myInsta.follow(true, "Robert", "Kenny", "RKenny");
-        myInsta.follow(true, "Bill", "Fitch", "BillF");
-        myInsta.follow(false, "Trevor", "Schlulz", "TrevorS");
-
-        System.out.println("Your followers' information\n");
-        System.out.println(myInsta);
-
-        System.out.println("Removing Robert Kenny from your followers list");
-        myInsta.delete("Robert", "Kenny");
-
-        System.out.println("List of followers after removing Robert Kenny");
-        System.out.println(myInsta);
-
-        System.out.println("Adding Elon Musk to your list of followers");
-        myInsta.follow(true, "Elon", "Musk", "ElonM");
-
-        System.out.println("List of your followers:");
-        System.out.println(myInsta);
-
-        System.out.println("Searching for Stonewall Jackson (StonW) in your followers list");
-        if (!myInsta.find("Jackson", "Stonewall")) {
-            System.out.println("Stonewall Jackson is not in your list of followers");
-            System.out.println("\n***************************");
-            System.out.println("You are following " + myInsta.followersNum() + " people");
-            System.out.println("You have " + myInsta.followingsNum() + " followers");
-
-            Scanner kb = new Scanner(System.in);
-            System.out.println("Enter the first name and the last name of the person that you want to follow back: ");
-            String first = kb.next();
-            String last = kb.next();
-            myInsta.followBack(first, last);
-            System.out.println(myInsta);
-        }
-    }
-}
