@@ -1,33 +1,8 @@
-/*
-name:Ronav Kiran
-description:
-I have done all the code myself without any help from online resources Ronav
-
-Extra feature added must be explained:
-what is the extra method added to the List interface? I added a method that checked if the flight had landed at its destination or not
-Attribute added to the Person class: The person's address
-Attribute added to the Passenger class: The passengers meal preference
-Attribute added to the Airplane class: The destination of the flight;
-
-Do not remove any of the given comments
-
-Any part of your code that does not follow the given instructions
-in the given document must be explained through comments,
-otherwise no points will be given.
-
-
-*/
-
 
 
 import java.util.*;
-public class AirplaneKiran//<------- chnage this name to include your last name
-{
-    //no code goes here
-}
-/*must add an extra instance variable
-modify the required method accordingly*/
-class Person{
+
+public class Person{
     //implement your code here
     public String firstName;
     public String lastName;
